@@ -88,7 +88,7 @@ public class KMPSearch {
 
     public static void main(String[] args) {
         // Test your implementation
-        System.out.println(areRotations("ABCD", "CDAB")); // true
+        System.out.println(areRotations("AABAABAAB", "ABAABAABA")); // true
         System.out.println(areRotations("ABCD", "CDBA")); // false
     }
 }
