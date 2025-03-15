@@ -33,4 +33,11 @@ public class QuickSelelct {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    public static void main(String[] args) {
+        // Test your implementation
+        int[] arr = { 7, 10, 4, 3, 20, 15 };
+        int k = 3;
+        System.out.println(kthSmallest(arr, k)); // Output: 7
+    }
 }
