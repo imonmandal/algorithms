@@ -4,55 +4,40 @@ public class Kadane {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    static int[] maxSumSubarray(int[] arr) {
+    static int[] maxSubarraySum(int[] arr) {
         if (arr == null || arr.length == 0) {
             return null;
         }
 
-        int maxSum = arr[0];
-        int currentSum = arr[0];
-        int start = 0;
-        int end = 0;
-        int tempStart = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int currSum = 0;
+        int tempStart = 0, start = 0, end = 0;
 
-        for (int i = 1; i < arr.length; i++) {
-            // Decide whether to start a new subarray or extend the existing one
-            if (currentSum + arr[i] > arr[i]) {
-                currentSum += arr[i];
-            } else {
-                currentSum = arr[i];
-                tempStart = i;
-            }
+        for (int i = 0; i < arr.length; i++) {
+            currSum += arr[i];
 
-            // Update maxSum and indices if we found a better solution
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
+            if (currSum > maxSum) {
+                maxSum = currSum;
                 start = tempStart;
                 end = i;
+            }
+
+            if (currSum < 0) {
+                // Not to carry negative sum becoz it will decrease the value further
+                // Only positive value will maximize the sum
+                currSum = 0;
+                tempStart = i + 1; // Start from next element
             }
         }
 
         return new int[]{start, end, maxSum};
     }
 
-    static int maxSubarraySum(int[] arr) {
-        int maxSum = Integer.MIN_VALUE;
-        int sum = 0;
-        for (int elem : arr) {
-            sum += elem;
-            maxSum = Math.max(maxSum, sum);
-
-            if (sum < 0) {
-                // Not to carry negative sum becoz it will decrease the value further
-                // Only positive value will maximize the sum
-                sum = 0;
-            }
-        }
-        return maxSum;
-    }
-
     public static void main(String[] args) {
         int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
-        System.out.println(maxSubarraySum(arr));
+        int[] result = maxSubarraySum(arr);
+        System.out.println("Start Index: " + result[0]);
+        System.out.println("End Index: " + result[1]);
+        System.out.println("Maximum Sum: " + result[2]);
     }
 }
