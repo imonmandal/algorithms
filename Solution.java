@@ -66,9 +66,8 @@ public class Solution {
             try {
                 if (st != null && st.hasMoreTokens()) {
                     return st.nextToken("\n");
-                } else {
-                    return br.readLine();
                 }
+                return br.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
