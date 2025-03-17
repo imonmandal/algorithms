@@ -47,7 +47,7 @@ public class Solution {
                     return null;
                 }
             }
-            return st.hasMoreTokens() ? st.nextToken() : null;
+            return st.hasMoreTokens() ? st.nextToken() : "";
         }
 
         public int nextInt() {
