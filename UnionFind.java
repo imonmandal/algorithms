@@ -28,32 +28,17 @@ public class UnionFind {
     }
 
     /**
-     * Find the representative (root) of element p with path compression
+     * Recursive find implementation with full path compression
      *
      * @param p the element
      * @return the representative of p
      */
     public int find(int p) {
         validate(p);
-        while (p != parent[p]) {
-            parent[p] = parent[parent[p]];  // Path compression by halving
-            p = parent[p];
+        if (p == parent[p]) {
+            return p;
         }
-        return p;
-    }
-
-    /**
-     * Alternative recursive find implementation with full path compression
-     *
-     * @param p the element
-     * @return the representative of p
-     */
-    public int findRecursive(int p) {
-        validate(p);
-        if (p != parent[p]) {
-            parent[p] = findRecursive(parent[p]);  // Full path compression
-        }
-        return parent[p];
+        return parent[p] = find(parent[p]);  // Full path compression
     }
 
     /**
